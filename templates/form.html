@@ -1,0 +1,36 @@
+{% extends "template.html" %}
+{% block title %}Home{% endblock title %}
+{% block pageTitle %}Search{% endblock pageTitle %}
+{% block navLink %}search{% endblock navLink %}
+{% block body %}
+{{ super() }}
+<form class="pb-3 needs-validation" role="search" method="POST" action="" novalidate>
+    <div class="input-group mb-3">
+        {% if inputForm.inputString.errors %}
+        {{ inputForm.inputString(class="form-control is-invalid") }}
+        {% for error in inputForm.inputString.errors %}
+        <span class="invalid-feedback">{{ error }}</span>
+        {% endfor %}
+        {% else %}
+        {{ inputForm.inputString(class="form-control") }}
+        {% endif %}
+        {{ inputForm.submit(class="btn btn-outline-primary") }}
+    </div>
+</form>
+{% endblock body %}
+
+{% block results %}
+{{ super() }}
+{% if data != None %}
+<div id="data">
+    {% if noResults %}
+    <h3 class="text-center">No Results</h3>
+    {% else %}
+    <h3>Input</h3>
+    <p>{{ data }}</p>
+    {% endif %}
+</div>
+{% endif %}
+{% endblock results %}
+
+{% block footerClass %}fixed-bottom{% endblock footerClass %}

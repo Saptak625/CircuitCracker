@@ -1,0 +1,11 @@
+{% macro card(title='Card Title', text="Some quick example text to build on the card title and make up the bulk of the card's content.", button='Go Somewhere', buttonLink='#', cardClasses='', buttonClasses='') -%}
+    <div class="card {{ cardClasses }}">
+        <!-- Add Image Macro if Required. -->
+        <!-- <img src="..." class="card-img-top" alt="..."> -->
+        <div class="card-body">
+            <h5 class="card-title">{{ title }}</h5>
+            <p class="card-text">{{ text }}</p>
+            <a href="{{ buttonLink }}" class="btn {{ buttonClasses }}">{{ button }}</a>
+        </div>
+    </div>
+{%- endmacro %}

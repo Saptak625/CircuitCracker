@@ -1,0 +1,9 @@
+@import "../../../../node_modules/bootstrap/scss/functions";
+
+$primary: #1EB854;
+$tertiary: #00d9ff;
+$dark: #171212;
+$secondary: $dark;
+$body-color: #D7CCCC;
+$body-bg: $dark;
+$card-bg: tint-color($dark, 10%);

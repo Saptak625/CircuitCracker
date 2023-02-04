@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Brand - {% block title %}{% endblock title %}</title>
+  <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename = 'favicon.ico') }}">
+
+  {% assets "home_css" %}
+  <link rel="stylesheet" href="{{ ASSET_URL }}">
+  {% endassets %}
+
+  {% import 'macros.html' as macros %}
+
+  <script src="https://kit.fontawesome.com/5800fa36a9.js" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  {% block head %}{% endblock head %}
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-secondary py-2 fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand text-primary mx-2 user-select-none" href="/">
+        <i class="fa-solid fa-globe fa-xl"></i>
+        Brand
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" id="home" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="form" href="/form">Form</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  {% block wholebody %}
+  <div class="container my-3">
+    {% block body %}
+    <h1>{% block pageTitle %}{% endblock pageTitle %}</h1>
+    <hr>
+    {% with messages = get_flashed_messages(with_categories = True) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    {% if category == "success" %}
+    <div class="alert alert-primary" role="alert">{{ message }}</div>
+    {% elif category == "error" %}
+    <div class="alert alert-danger" role="alert">{{ message }}</div>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    {% endblock body %}
+    {% block results %}
+    <div class="mt-3">
+      <div class="py-3" id="scrollTo"></div>
+      <h1>Results</h1>
+      <hr>
+      <div class="text-center" id="loadSpinner">
+        <div class="py-3"></div>
+        <div class="spinner-border text-primary" style="width: 4rem; height: 4rem;" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    </div>
+    {% endblock results %}
+  </div>
+  {% endblock wholebody %}
+  <footer class="bg-secondary row mx-0 py-4 w-100 {% block footerClass %}{% endblock footerClass %}">
+    <div class="col text-center mx-3">Copyright © 2023 Brand. All rights reserved.</div>
+    <div class="col mx-3">
+      <a class="mx-2" href="/">Home</a>
+      <a class="mx-2" href="/form">Form</a>
+    </div>
+  </footer>
+  {% block script %}{% endblock script %}
+  {% assets "home_js" %}
+  <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+  {% endassets %}
+  <script>
+    const navLink = document.getElementById({% block navLink %}{% endblock navLink %}.id);
+    navLink.classList.add("active");
+  </script>
+  <script>
+    function copyToClipboard(copyText) {
+      rawString = String.raw`${copyText}`;
+      navigator.clipboard.writeText(rawString);
+      console.log(rawString);
+    }
+
+    {% if data == None %}
+    const spinner = document.getElementById("loadSpinner");
+    spinner.parentElement.style.display = 'none';
+    {% endif %}
+
+    {% if data != None %}
+    const spinner = document.getElementById("loadSpinner");
+    spinner.style.display = 'none';
+    document.getElementById("scrollTo").scrollIntoView();
+    {% endif %}
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
+    integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
+    crossorigin="anonymous"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</body>
+
+</html>
