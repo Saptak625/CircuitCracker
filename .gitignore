@@ -152,7 +152,7 @@ cython_debug/
 #.idea/
 
 # Node Modules
-# node_modules/
+node_modules/
 
 # Gen
 # static/gen/

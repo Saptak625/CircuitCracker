@@ -7,9 +7,10 @@
   <title>Circuit Cracker - {% block title %}{% endblock title %}</title>
   <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename = 'favicon.ico') }}">
 
-  {% assets "home_css" %}
+  <link rel="stylesheet" href="{{ url_for('static', filename = 'gen/packed.ee33d57b.css') }}">
+  <!-- {% assets "home_css" %}
   <link rel="stylesheet" href="{{ ASSET_URL }}">
-  {% endassets %}
+  {% endassets %} -->
 
   {% import 'macros.html' as macros %}
 
@@ -81,9 +82,10 @@
     </div>
   </footer>
   {% block script %}{% endblock script %}
-  {% assets "home_js" %}
+  <!-- {% assets "home_js" %}
   <script type="text/javascript" src="{{ ASSET_URL }}"></script>
-  {% endassets %}
+  {% endassets %} -->
+  <script src="{{ url_for('static', filename = 'gen/packed.4d09ca2f.js') }}"></script>
   <script>
     const navLink = document.getElementById({% block navLink %}{% endblock navLink %}.id);
     navLink.classList.add("active");
