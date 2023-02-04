@@ -4,7 +4,11 @@ Complex Circuit Solver is a Python program to solve Complex Circuits with Resist
 Demo Link(https://replit.com/@Saptak625/ComplexCircuitSolver#main.py).
 
 ## User Guide
-In the current version (v1), circuits are represented in .crc circuit code file. These files are compiled line by line by a custom compiler to create a Component Tree structure. The code in main.py will compile the given file when the CiruitSolver class is instantiated.
+In the current version (v1), circuits are represented in .crc circuit code file. An example circuit is shown below.
+https://github.com/Saptak625/ComplexCircuitSolver/blob/a2d3065e9036d06bf58c552c4f95b742c9161b11/template_circuit.crc#L1-L15
+
+These files are compiled line by line by a custom compiler to create a Component Tree structure. The code in main.py will compile the given file when the CiruitSolver class is instantiated.
+https://github.com/Saptak625/ComplexCircuitSolver/blob/a2d3065e9036d06bf58c552c4f95b742c9161b11/main.py#L1-L8
 
 ### Commands
 
