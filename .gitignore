@@ -155,5 +155,5 @@ cython_debug/
 node_modules/
 
 # Gen
-# static/gen/
+static/gen/
 .vercel
