@@ -71,7 +71,7 @@ class CircuitSolver:
   def writeReasoning(self, reasoning):
     self.stepByStepReasoning.append(reasoning)
 
-  def getStepByStepReasoning(self, showVoltageSteps = True, showCurrentSteps = True, showResistanceSteps = True):
+  def getStepByStepReasoning(self, showVoltageSteps = True, showCurrentSteps = True, showResistanceSteps = True, asList = False):
     out = []
     i = 1
     for r in self.stepByStepReasoning:
@@ -90,9 +90,9 @@ class CircuitSolver:
       elif 'Resistance' in r and showResistanceSteps:
         write = True
       if write:
-        out.append(f'{i}. {r}')
+        out.append(r if asList else f'{i}. {r}')
         i += 1
-    return '\n'.join(out)
+    return out if asList else '\n'.join(out)
 
   def showStepByStepReasoning(self, showVoltageSteps = True, showCurrentSteps = True, showResistanceSteps = True):
     print(self.getStepByStepReasoning(showVoltageSteps=showVoltageSteps, showCurrentSteps=showCurrentSteps, showResistanceSteps=showResistanceSteps))

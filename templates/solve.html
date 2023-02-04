@@ -4,16 +4,54 @@
 {% block navLink %}solve{% endblock navLink %}
 {% block body %}
 {{ super() }}
+<h5>Learn an introduction into circuit code on the <a href="/">homepage</a> or on the <a href="https://github.com/Saptak625/CircuitCracker">Github project page</a>.</h5>
 <form class="pb-3 needs-validation" role="solve" method="POST" action="" novalidate>
+    {{ circuitForm.circuitCode.label(class="form-label") }}
     {% if circuitForm.circuitCode.errors %}
-    {{ circuitForm.circuitCode(class="form-control is-invalid", rows="10") }}
-    {% for error in circuitForm.circuitCode.errors %}
-    <span class="invalid-feedback">{{ error }}</span>
-    {% endfor %}
+        {{ circuitForm.circuitCode(class="form-control mb-3 is-invalid", rows="10") }}
+        {% for error in circuitForm.circuitCode.errors %}
+            <span class="invalid-feedback">{{ error }}</span>
+        {% endfor %}
     {% else %}
-    {{ circuitForm.circuitCode(class="form-control", rows="10") }}
+        {{ circuitForm.circuitCode(class="form-control mb-3", rows="10") }}
     {% endif %}
-    {{ circuitForm.submit(class="btn btn-outline-primary mt-3 btn-lg") }}
+
+    {{ circuitForm.roundingPlace.label(class="form-label") }}
+    {% if circuitForm.roundingPlace.errors %}
+        {{ circuitForm.roundingPlace(class="form-control mb-3 is-invalid") }}
+        {% for error in circuitForm.roundingPlace.errors %}
+            <span class="invalid-feedback">{{ error }}</span>
+        {% endfor %}
+    {% else %}
+        {{ circuitForm.roundingPlace(class="form-control mb-3") }}
+    {% endif %}
+
+    <div class="d-flex flex-row">
+        <div class="mb-3">
+            {{ circuitForm.showVoltage(class="me-1", checked=True) }}
+            {{ circuitForm.showVoltage.label(class="form-check-label me-5") }}
+        </div>
+        <div class="mb-3">
+            {{ circuitForm.showCurrent(class="me-1", checked=True) }}
+            {{ circuitForm.showCurrent.label(class="form-check-label me-5") }}
+        </div>
+        <div class="mb-3">
+            {{ circuitForm.showResistance(class="me-1", checked=True) }}
+            {{ circuitForm.showResistance.label(class="form-check-label me-5") }}
+        </div>
+    </div>
+    <div class="d-flex flex-row">
+        <div class="mb-3">
+            {{ circuitForm.showLegs(class="me-1", checked=True) }}
+            {{ circuitForm.showLegs.label(class="form-check-label me-5") }}
+        </div>
+        <div class="mb-3">
+            {{ circuitForm.showResistors(class="me-1", checked=True) }}
+            {{ circuitForm.showResistors.label(class="form-check-label me-5") }}
+        </div>
+    </div>
+
+    {{ circuitForm.submit(class="btn btn-outline-primary btn-lg") }}
 </form>
 {% endblock body %}
 
@@ -21,14 +59,26 @@
 {{ super() }}
 {% if data != None %}
 <div id="data">
-    {% if noResults %}
-    <h3 class="text-center">No Results</h3>
-    {% else %}
-    <h3>Input</h3>
-    <p>{{ data }}</p>
-    {% endif %}
+    <h3>Solution:</h3>
+    {% for s in data[0] %}
+        {% if s %}
+            <h5>{{ s }}</h5>
+        {% else %}
+            <div class="mt-4"></div>
+        {% endif %}
+    {% endfor %}
+    <h3 class="mt-5">Reasoning:</h3>
+    <ol>
+    {% for r in data[1] %}
+        <h5><li>{{ r }}</li></h5>
+    {% endfor %}
+    </ol>
 </div>
 {% endif %}
 {% endblock results %}
 
-{% block footerClass %}fixed-bottom{% endblock footerClass %}
+{% block footerClass %}
+{% if data == None %}
+fixed-bottom
+{% endif %}
+{% endblock footerClass %}

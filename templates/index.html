@@ -3,47 +3,66 @@
 {% block navLink %}home{% endblock navLink %}
 {% block wholebody %}
 <div class="bg-dark px-4 pt-5 mb-3 text-center border-bottom">
-  <h1 class="display-4 fw-bold">Centered screenshot</h1>
+  <h1 class="display-4 fw-bold">Circuit Cracker</h1>
   <div class="col-lg-6 mx-auto">
-    <p class="lead mb-4">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
+    <p class="lead mb-4">Circuit Cracker solves Complex Circuits with Resistors with Logical Reasoning. It uses a Component Tree structure with Recursive Solving to determine the voltages, currents, and resistances for any complex circuit.</p>
     <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
-      <button type="button" class="btn btn-outline-primary btn-lg px-4 me-sm-3">Primary button</button>
-      <button type="button" class="btn btn-outline-primary btn-lg px-4">Secondary</button>
+      <a href="solve"><button type="button" class="btn btn-outline-primary btn-lg px-4 me-sm-3">Solve Now!</button></a>
     </div>
   </div>
 </div>
 <!-- {{ super() }} -->
 <div class="container my-3">
-  <div class="mb-5">
-  <h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</h5>
-  <h5 class="text-primary">\[2H_{2} + O_{2} \rightarrow 2H_{2}O\]</h5>
-  </div>
-  <h3 class="mb-3">Current features include:</h3>
+  <h3 class="mb-3">Learn to Use:</h3>
   <div class="row">
     <div class="col-sm-4">
       <div class="card h-100">
         <div class="card-body d-flex flex-column">
-          <h5 class="card-title">Link 1</h5>
-          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          <a href="#" class="btn mt-auto btn-outline-primary">Try it out!</a>
+          <h5 class="card-title">Introduction</h5>
+          <p class="card-text">
+            In the current version (v1), circuits are represented in circuit code commands. An simple series circuit is shown below:
+            <pre>
+              <code>
+              R1 1000_O
+              R2 1000_O
+              LT S 0.01_A R1,R2,
+              PASS LT
+            </code>
+            </pre>
+            These files are compiled line by line by a custom compiler to create a Component Tree structure. The Component Tree is then recursively solved to determine the voltages, currents, and resistances for any complex circuit.
+            <br><br>
+            For more information, please visit the Github project page below.
+            <a href="https://github.com/Saptak625/CircuitCracker" class="text-primary mx-auto">
+              <button class="btn btn-lg btn-outline-primary mt-3">Learn More</button>
+            </a>
+          </p>
         </div>
       </div>
     </div>
     <div class="col-sm-4">
       <div class="card h-100">
         <div class="card-body d-flex flex-column">
-          <h5 class="card-title">Link 2</h5>
-          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          <a href="#" class="btn mt-auto btn-outline-primary">Try it out!</a>
+          <h5 class="card-title">Writing Circuit Code</h5>
+          <p class="card-text">
+            The "R" command is used to define a resistor in a circuit and needs a name/label as the first parameter. The next three parameters are for voltage, current, and resistance and at least one of them must be provided. The parameters must be followed by their units, i.e. _V for voltage, _A for current, and _O for resistance.
+            <br><br>
+            The "L" command is used to define a leg, which acts as a container for resistors and other legs. A leg requires a type (Series or Parallel), a minimum of one subcomponent and additional parameters for voltage and resistance. The subcomponents are listed after the leg type and separated by commas.
+            <br><br>
+            The PASS statement signifies the root component of the circuit, which could be either a resistor or a leg. The PASS statement requires only one parameter, the name of the root component.
+          </p>
         </div>
       </div>
     </div>
     <div class="col-sm-4">
       <div class="card h-100">
         <div class="card-body d-flex flex-column">
-          <h5 class="card-title">Link 3</h5>
-          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          <a href="#" class="btn mt-auto btn-outline-primary">Try it out!</a>
+          <h5 class="card-title">Future Plans</h5>
+          <p class="card-text">
+            <ul>
+            <li>The integration of a GUI into Circuit Code has the potential to greatly enhance the design process for electrical circuits. With a graphical interface, designing circuits may become easier and more intuitive for users, reducing the need for manual coding and allowing for a more user-friendly experience. The automatic definition of legs may also simplify the process of defining and organizing components in a circuit.</li>
+            <li>Furthermore, the expansion of Circuit Code to include other electrical components such as capacitors and inductors may bring more versatility and accuracy to the simulation of electrical circuits. This would allow for the simulation of a wider range of circuits and increase the overall usefulness of Circuit Code. Additionally, the ability to simulate these components may lead to improved circuit design and optimization, resulting in better performance and functionality in real-world applications.</li>
+            </ul>
+          </p>
         </div>
       </div>
     </div>

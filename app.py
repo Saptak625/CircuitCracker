@@ -1,6 +1,6 @@
 from flask import Flask, render_template, flash
 from flask_assets import Environment
-import time
+from markupsafe import Markup
 
 from assets import bundles
 from forms import CircuitForm
@@ -15,7 +15,8 @@ assets.register(bundles)
 
 @app.route('/')
 def index():
-    return render_template('index.html', data=None)
+    embed = Markup('https://github.com/Saptak625/ComplexCircuitSolver/blob/355ac5a0cadf39e94866fb8ef2b5b8c2ce3a4c43/Sample%20Circuits/simple_series_circuit.crc#L1-L4')
+    return render_template('index.html', data=None, embed=embed)
 
 
 @app.route('/solve', methods=['GET', 'POST'])
@@ -23,10 +24,12 @@ def form():
     circuitForm = CircuitForm()
     data = None
     if circuitForm.circuitCode.data:
-        print(circuitForm.circuitCode.data)
         circuitSolver = CircuitSolver(circuitForm.circuitCode.data)
+        circuitSolver.setRoundingPlace(circuitForm.roundingPlace.data)
         circuitSolver.solve()
-        circuitSolver.showCircuit()
+        solution = circuitSolver.__str__(showVoltage=circuitForm.showVoltage.data, showCurrent=circuitForm.showCurrent.data, showResistance=circuitForm.showResistance.data, showLegs=circuitForm.showLegs.data, showResistors=circuitForm.showResistors.data).split('\n')
+        reasoning = circuitSolver.getStepByStepReasoning(showVoltageSteps=circuitForm.showVoltage.data, showCurrentSteps=circuitForm.showCurrent.data, showResistanceSteps=circuitForm.showResistance.data, asList=True)
+        data = solution, reasoning
     return render_template('solve.html', data=data, circuitForm=circuitForm)
 
 
