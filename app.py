@@ -15,8 +15,7 @@ assets.register(bundles)
 
 @app.route('/')
 def index():
-    embed = Markup('https://github.com/Saptak625/ComplexCircuitSolver/blob/355ac5a0cadf39e94866fb8ef2b5b8c2ce3a4c43/Sample%20Circuits/simple_series_circuit.crc#L1-L4')
-    return render_template('index.html', data=None, embed=embed)
+    return render_template('index.html', data=None)
 
 
 @app.route('/solve', methods=['GET', 'POST'])

@@ -156,3 +156,4 @@ node_modules/
 
 # Gen
 # static/gen/
+.vercel
