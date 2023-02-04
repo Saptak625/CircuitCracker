@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Brand - {% block title %}{% endblock title %}</title>
+  <title>Circuit Cracker - {% block title %}{% endblock title %}</title>
   <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename = 'favicon.ico') }}">
 
   {% assets "home_css" %}
@@ -23,7 +23,7 @@
     <div class="container-fluid">
       <a class="navbar-brand text-primary mx-2 user-select-none" href="/">
         <i class="fa-solid fa-globe fa-xl"></i>
-        Brand
+        Circuit Cracker
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,7 +35,7 @@
             <a class="nav-link" id="home" href="/">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="form" href="/form">Form</a>
+            <a class="nav-link" id="solve" href="/solve">Solve</a>
           </li>
         </ul>
       </div>
@@ -74,10 +74,10 @@
   </div>
   {% endblock wholebody %}
   <footer class="bg-secondary row mx-0 py-4 w-100 {% block footerClass %}{% endblock footerClass %}">
-    <div class="col text-center mx-3">Copyright © 2023 Brand. All rights reserved.</div>
+    <div class="col text-center mx-3">Copyright © 2023 Circuit Cracker. All rights reserved.</div>
     <div class="col mx-3">
       <a class="mx-2" href="/">Home</a>
-      <a class="mx-2" href="/form">Form</a>
+      <a class="mx-2" href="/solve">Solve</a>
     </div>
   </footer>
   {% block script %}{% endblock script %}

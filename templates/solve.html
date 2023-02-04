@@ -1,0 +1,34 @@
+{% extends "template.html" %}
+{% block title %}Home{% endblock title %}
+{% block pageTitle %}Solve{% endblock pageTitle %}
+{% block navLink %}solve{% endblock navLink %}
+{% block body %}
+{{ super() }}
+<form class="pb-3 needs-validation" role="solve" method="POST" action="" novalidate>
+    {% if circuitForm.circuitCode.errors %}
+    {{ circuitForm.circuitCode(class="form-control is-invalid", rows="10") }}
+    {% for error in circuitForm.circuitCode.errors %}
+    <span class="invalid-feedback">{{ error }}</span>
+    {% endfor %}
+    {% else %}
+    {{ circuitForm.circuitCode(class="form-control", rows="10") }}
+    {% endif %}
+    {{ circuitForm.submit(class="btn btn-outline-primary mt-3 btn-lg") }}
+</form>
+{% endblock body %}
+
+{% block results %}
+{{ super() }}
+{% if data != None %}
+<div id="data">
+    {% if noResults %}
+    <h3 class="text-center">No Results</h3>
+    {% else %}
+    <h3>Input</h3>
+    <p>{{ data }}</p>
+    {% endif %}
+</div>
+{% endif %}
+{% endblock results %}
+
+{% block footerClass %}fixed-bottom{% endblock footerClass %}
