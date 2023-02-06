@@ -2,11 +2,12 @@
 Complex Circuit Solver is a Python program to solve Complex Circuits with Resistors with Logical Reasoning. It uses a Component Tree structure with Recursive Solving to determine the voltages, currents, and resistances for any complex circuit.
 
 Demo Link (https://circuitcracker.vercel.app)
+
 Original CLI Interface (https://github.com/Saptak625/ComplexCircuitSolver)
 
 ## User Guide
 In the current version (v1), circuits are represented in circuit code commands. An simple series circuit is shown below:
-https://github.com/Saptak625/CircuitCracker/blob/e7e79334cc18edbc1a7aa8cc4fd18cf7aad96179/template_circuit.crc#L1-L15
+https://github.com/Saptak625/CircuitCracker/blob/f40c93d0cd4a295d5899365f7e4268793ff41948/simple_series_circuit.crc#L1-L4
 
 These files are compiled line by line by a custom compiler to create a Component Tree structure. The Component Tree is then recursively solved to determine the voltages, currents, and resistances for any complex circuit.
 
